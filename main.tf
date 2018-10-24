@@ -36,7 +36,7 @@ data "aws_ami" "centos7" {
 
 
 # Create repository instance
-module "repository_ec2" {
+module "instance_ec2" {
   source = "github.com/terraform-aws-modules/terraform-aws-ec2-instance"
 
   name                        = "${var.instance_name}"
@@ -60,11 +60,11 @@ resource "aws_volume_attachment" "repository_ec2" {
   count         = "${var.data_disk_size} > 0 ? ${var.instance_count} : 0"
   device_name   = "/dev/sdb"
   volume_id     = "${element(aws_ebs_volume.repository_ec2.*.id, count.index)}"
-  instance_id   = "${element(module.repository_ec2.*.id, count.index)}"
+  instance_id   = "${element(module.instance_ec2.id, count.index)}"
   force_detach  = true
 }
 resource "aws_ebs_volume" "repository_ec2" {
   count             = "${var.data_disk_size} > 0 ? ${var.instance_count} : 0"
-  availability_zone = "${module.repository_ec2.availability_zone[0]}"
+  availability_zone = "${module.instance_ec2.availability_zone[0]}"
   size              = "${var.data_disk_size}"
 }

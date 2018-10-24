@@ -10,8 +10,8 @@ variable "instance_name" {
 }
 
 variable "instance_count" {
-  description = "Number of instance"
-  default = 1
+  description = "Number of instances to launch"
+  default     = 1
 }
 
 variable "instance_type" {
