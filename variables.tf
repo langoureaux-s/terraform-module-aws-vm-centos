@@ -9,11 +9,6 @@ variable "instance_name" {
   description = "Instance name"
 }
 
-variable "instance_count" {
-  description = "Number of instances to launch"
-  default     = 1
-}
-
 variable "instance_type" {
   description = "The instance type"
 }
@@ -32,13 +27,13 @@ variable "security_group_names" {
   default = ["admin"]
 }
 
-variable "user_data_path" {
-  description = "The cloud-init path"
+variable "user_data" {
+  description = "The cloud-init"
   default = ""
 }
 
-variable "start_ip" {
-  description = "The static IP begin range"
+variable "ip" {
+  description = "The static IP"
 }
 
 variable "os_size" {
