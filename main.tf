@@ -57,14 +57,14 @@ module "instance_ec2" {
   tags                        = "${var.tags}"
 }
 resource "aws_volume_attachment" "repository_ec2" {
-  count         = "${var.data_disk_size} > 0 ? ${var.instance_count} : 0"
+  count         = "${var.data_disk_size != 0 ? var.instance_count : 0}"
   device_name   = "/dev/sdb"
   volume_id     = "${element(aws_ebs_volume.repository_ec2.*.id, count.index)}"
   instance_id   = "${element(module.instance_ec2.id, count.index)}"
   force_detach  = true
 }
 resource "aws_ebs_volume" "repository_ec2" {
-  count             = "${var.data_disk_size} > 0 ? ${var.instance_count} : 0"
+  count             = "${var.data_disk_size != 0 ? var.instance_count : 0}"
   availability_zone = "${module.instance_ec2.availability_zone[0]}"
   size              = "${var.data_disk_size}"
 }
