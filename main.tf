@@ -40,7 +40,7 @@ module "instance_ec2" {
   source = "github.com/terraform-aws-modules/terraform-aws-ec2-instance"
 
   name                        = "${var.instance_name}"
-  instance_count              = "${var.instance_count}"
+  count                       = "${var.instance_count}"
   ami                         = "${data.aws_ami.centos7.id}"
   instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
