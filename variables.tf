@@ -6,7 +6,7 @@ variable "vpc_name" {
 }
 
 variable "instance_name" {
-  decription = "Instance name"
+  description = "Instance name"
 }
 
 variable "instance_count" {
