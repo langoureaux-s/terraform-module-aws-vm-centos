@@ -47,7 +47,7 @@ module "repository_ec2" {
   monitoring                  = true
   vpc_security_group_ids      = ["${data.aws_security_group.sgs.*.id}"]
   subnet_id                   = "${data.aws_subnet.subnet.id}"
-  user_data                   = "${var.user_data}"
+  user_data                   = "${var.user_data_path != "" ? file(var.user_data_path) : ""}"
   private_ip                  = "${cidrhost(var.subnet, count.index + var.start_ip)}"
   root_block_device           = [{
                                   delete_on_termination = true,

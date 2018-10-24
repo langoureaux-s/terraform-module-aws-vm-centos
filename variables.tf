@@ -32,8 +32,8 @@ variable "security_group_names" {
   default = ["admin"]
 }
 
-variable "user_data" {
-  description = "The cloud-init contend"
+variable "user_data_path" {
+  description = "The cloud-init path"
   default = ""
 }
 
