@@ -18,6 +18,7 @@ data "aws_security_group" "sgs" {
 # Get centos7 image id
 data "aws_ami" "centos7" {
   most_recent = true
+  owners      = ["679593333241"]
 
   filter {
     name   = "name"
