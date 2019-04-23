@@ -1,6 +1,3 @@
-provider "aws" {
-  region = "${var.location}"
-}
 
 # Get subnet data
 data "aws_subnet" "subnet" {
